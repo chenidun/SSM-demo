@@ -3,8 +3,8 @@ package ssm.project.service;
 import ssm.project.pojo.Admin;
 
 public interface AdminService {
-	//×¢²á
+	//æ³¨å†Œ
 	public boolean register(Admin a);
-	//µÇÂ¼
+	//ç™»å½•
 	public boolean login(String name,String password);
 }
