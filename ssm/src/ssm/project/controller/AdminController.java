@@ -19,6 +19,7 @@ public class AdminController {
 	@RequestMapping("admin_register")
 	@ResponseBody
 	public boolean register(Admin a){
+		//注册
 		boolean data=adminService.register(a);
 		System.out.println("注册成功："+data);
 		return data;
@@ -26,6 +27,7 @@ public class AdminController {
 	@RequestMapping("adminlogin")
 	@ResponseBody
 	public boolean login(Admin admin,HttpSession session){
+		//登录，成功后把登录名保存到session
 		String adminName=admin.getName();
 		session.setAttribute("adminName", adminName);
 		System.out.println("登录名是："+admin.getName());
@@ -34,12 +36,14 @@ public class AdminController {
 	}
 	@RequestMapping("toindex")
 	public String toindex(HttpSession session,Model model){
+		//把session保存的登录名取出来显示在首页
 		String name = (String) session.getAttribute("adminName");
 		model.addAttribute("name", name);
 		return "index.jsp";
 	}
 	@RequestMapping("loginout")
 	public String loginout(HttpSession session){
+		//退出登录，删除session中保存的登录名
 		session.removeAttribute("adminName");
 		return "login.jsp";
 	}
