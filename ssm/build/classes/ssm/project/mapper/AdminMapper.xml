@@ -2,9 +2,7 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<!-- 数据表字段和我们实体类属性映射 namespace 是不是要唯一 -->
 <mapper namespace="ssm.project.mapper.AdminMapper">
-	
 	<insert id="register" parameterType="admin">
 		INSERT INTO t_admin (id,name,password)
 		VALUES (null,#{name},#{password})
@@ -14,6 +12,4 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT name,password FROM t_admin WHERE name=#{name} 
 	
 	</select>
-	
-	
 </mapper>
