@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ssm.project.mapper.UserMapper">
+	<insert id="addUser" parameterType="ssm.project.pojo.User">
+		INSERT INTO t_user (uid,username,age,sex,mobile,email,des,jointime)
+		VALUES (null,#{username},#{age},#{sex},#{mobile},#{email},#{des},#{jointime})
+	</insert>
+	
+	<select id="findAll" resultType="user">
+		SELECT uid,username,age,sex,mobile,email,des,jointime FROM t_user 
+	
+	</select>
+	
+	<delete id="deleteByUid" parameterType="Long">
+	DELETE FROM t_user WHERE uid=#{uid}
+	</delete>
+	
+	<update id="update" parameterType="ssm.project.pojo.User">
+	UPDATE t_user 
+	<trim prefix="SET" suffixOverrides=",">
+	<if test="username!=null and username!=''">username=#{username},</if>
+	<if test="age!=null and age!=''">age=#{age},</if>
+	<if test="sex!=null and sex!=''">sex=#{sex},</if>
+	<if test="mobile!=null and mobile!=''">mobile=#{mobile},</if>
+	<if test="email!=null and email!=''">email=#{email},</if>
+	<if test="des!=null and des!=''">des=#{des},</if>
+	</trim>
+	where uid=#{uid}
+	</update>
+	<select id="getByUid" parameterType="Long" resultType="user">
+	SELECT uid,username,age,sex,mobile,email,des,jointime FROM t_user where uid=#{uid}
+	</select>
+	<select id="search"  parameterType="String" resultType="user">
+	SELECT uid,username,age,sex,mobile,email,des,jointime FROM t_user 
+	<where>
+		<if test="_parameter!=null">
+			username like '%${_parameter}%'
+		</if>
+	</where>
+	</select>
+	<select id="getByName" parameterType="String" resultType="user">
+	SELECT uid,username,age,sex,mobile,email,des,jointime FROM t_user where username=#{username}
+	</select>
+	<!-- 批量删除 -->
+	<delete id="deleteAll" parameterType="collection">
+		DELETE FROM t_user WHERE uid in
+		<!-- item 每一次迭代的值 index 每一次迭代的索引 -->
+		<foreach collection="array" open="(" separator="," item="uid"
+			close=")">
+			#{uid}
+		</foreach>
+	</delete>
+</mapper>
