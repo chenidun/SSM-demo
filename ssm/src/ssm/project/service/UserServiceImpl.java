@@ -76,7 +76,6 @@ public class UserServiceImpl implements UserService {
 	public User getByUid(Long uid) {
 		// TODO Auto-generated method stub
 		User user = userMapper.getByUid(uid);
-		System.out.println("service²ã²éÑ¯½á¹û£º"+user);
 		return user;
 	}
 	@Override
