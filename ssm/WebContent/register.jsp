@@ -22,6 +22,7 @@
 			</div>
 			<div class="modal-footer">
 				<button class="btn btn-primary" id="register" type="submit">提交</button>
+				<button class="btn btn-warning" id="reset" type="reset">重置</button>
 				<button class="btn" data-dismiss="modal" aria-hidden="true" id="close">关闭</button>
 			</div>
 			</form>

@@ -22,7 +22,7 @@
 	<div class="text-c"> 
 		<div  class="input-text" style="width:250px">您要搜索的会员名是：${name }</div>
 	</div>
-	<div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l"><a id="delAll" href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> <a href="usertoadd.do" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添加用户</a></span><span class="r">共有数据：<strong>${search_sum }</strong> 条</span> </div>
+	<div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l"><a id="delAll" href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> <a href="usertoadd.do" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添加用户</a></span><span class="r">共查询到：<strong>${search_sum }</strong> 条数据</span> </div>
 	<div class="mt-20">
 	<table class="table table-border table-bordered table-hover table-bg table-sort">
 		<thead>

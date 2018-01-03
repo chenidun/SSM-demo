@@ -32,13 +32,12 @@ public class UserController {
 		//传递当前时间
 		u.setJointime(new Date());
 		boolean user = userService.addUser(u);
-		
-			System.out.println("控制层添加成功"+user);
-			return user;
+		return user;
 	}
 	@RequestMapping("usertoList")
 	public String list(Model model){
 		List<User> uList = userService.findAll();
+		//获取查询总数
 		int sum = uList.size();
 		System.out.println("数据库查询的数据共"+sum+"条");
 		model.addAttribute("list",uList);
@@ -54,6 +53,7 @@ public class UserController {
 	@RequestMapping("userupdate")
 	@ResponseBody
 	public boolean update(User u,HttpSession session){
+		//取出session保存的uid
 		Long uid = (Long) session.getAttribute("uid");
 		u.setUId(uid);
 		System.out.println("从session中取出的uid 是;"+uid);
@@ -61,8 +61,9 @@ public class UserController {
 	}
 	@RequestMapping("usersearch")
 	public String search(String username,Model model){
-		System.out.println("模糊查询");
+		//模糊查询
 		List<User> searchResult = userService.search(username);
+		//获取查询到的总数
 		int search_sum=searchResult.size();
 		System.out.println("查询成功："+searchResult);
 		model.addAttribute("SR", searchResult);
@@ -72,8 +73,8 @@ public class UserController {
 	}
 	@RequestMapping("memberedit")
 	public String edit(Long uid,Model model,HttpSession session){
-		System.out.println("需要编辑信息的ID"+uid);
 		User byUid = userService.getByUid(uid);
+		//将前台传来的uid保存到session
 		session.setAttribute("uid", uid);
 		System.out.println("session中保存的uid是："+uid);
 		System.out.println("根据uid查询的用户对象："+byUid);
@@ -83,17 +84,13 @@ public class UserController {
 	@RequestMapping("userdeleteall")
 	@ResponseBody
 	public boolean deleteAll(Long[] uids){
-		for(Long uid:uids){
-			System.out.println("controller层前台传来选中的id："+uid);
-		}
+		//批量删除
 		boolean flag = userService.deleteAll(uids);
 		System.out.println("删除成功"+flag);
 		return true;
 	}
 	@RequestMapping("userdetail")
-	
 	public String userdetail(Long uid,Model model){
-		System.out.println("前台查看的id："+uid);
 		User byUid = userService.getByUid(uid);
 		model.addAttribute("user", byUid);
 		return "member-show.jsp";

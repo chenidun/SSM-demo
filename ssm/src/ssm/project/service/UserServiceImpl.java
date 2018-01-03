@@ -15,14 +15,14 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public boolean addUser(User u) {
 		// TODO Auto-generated method stub
-		//根据名字查询数据库有没有相同的用户
 		Boolean flag=false;
+		//根据前台要添加的名字查询是否已经存在
 		List<User> byName = userMapper.getByName(u.getUsername());
-		System.out.println("service层数据库查询的："+byName);
 		if(byName!=null&&!byName.isEmpty()){
 			System.out.println("数据库有相同名字，添加失败");
 			flag=false;
 		}else{
+		//进行添加，返回添加结果，影响的记录
 		int addUser = userMapper.addUser(u);
 		if(addUser>0)
 			flag=true;
@@ -34,20 +34,21 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public boolean deleteByUid(Long uid) {
 		// TODO Auto-generated method stub
-		System.out.println("删除用户");
+		//删除，返回数据库影响行数
 		int deleteByUid = userMapper.deleteByUid(uid);
 		boolean flag=false;
 		if(deleteByUid>0){
 			flag=true;
+		}else{
+			flag=false;
 		}
-		
 		return flag;
 	}
 	@Override
 	public boolean update(User u) {
 		// TODO Auto-generated method stub
-		System.out.println("前台传的数据："+u);
 		boolean flag=false;
+		//更新，返回影响行数
 		int update = userMapper.update(u);
 		if(update>0){
 		System.out.println("更新成功");
@@ -81,11 +82,8 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public boolean deleteAll(Long[] uids) {
 		// TODO Auto-generated method stub
-		for(Long uid:uids){
-			System.out.println("service层获得的id是："+uid);
-		}
+		//批量删除，返回结果
 		int deleteAll = userMapper.deleteAll(uids);
-		System.out.println("调用mapper的删除方法");
 		boolean flag=false;
 		if(deleteAll>0){
 		flag=true;

@@ -25,7 +25,7 @@
 		<button type="submit"  class="btn btn-success radius" id="search" name=""><i class="Hui-iconfont">&#xe665;</i> 搜用户</button>
 	</div>
 	</form>
-	<div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l"><a id="delAll" href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> <a href="usertoadd.do" class="btn btn-primary radius" onClick=""><i class="Hui-iconfont">&#xe600;</i> 添加用户</a></span><span class="r">共有数据：<strong>${sum }</strong> 条</span> </div>
+	<div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l"><a id="delAll" href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> <a href="usertoadd.do" class="btn btn-primary radius" onClick=""><i class="Hui-iconfont">&#xe600;</i> 添加用户</a></span><span class="r">共有：<strong>${sum }</strong> 条数据</span> </div>
 	
 	<div class="mt-20">
 	<table class="table table-border table-bordered table-hover table-bg table-sort">

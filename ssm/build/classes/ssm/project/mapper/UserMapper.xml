@@ -19,6 +19,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<update id="update" parameterType="ssm.project.pojo.User">
 	UPDATE t_user 
+	<!-- 判断前台传来的数据不是空就进行更新，是空保持不变 -->
 	<trim prefix="SET" suffixOverrides=",">
 	<if test="username!=null and username!=''">username=#{username},</if>
 	<if test="age!=null and age!=''">age=#{age},</if>
@@ -32,6 +33,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getByUid" parameterType="Long" resultType="user">
 	SELECT uid,username,age,sex,mobile,email,des,jointime FROM t_user where uid=#{uid}
 	</select>
+	<!--模糊查询  -->
 	<select id="search"  parameterType="String" resultType="user">
 	SELECT uid,username,age,sex,mobile,email,des,jointime FROM t_user 
 	<where>
@@ -40,6 +42,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</if>
 	</where>
 	</select>
+	<!--添加用户时进行查询，验证是否用户名已存在  -->
 	<select id="getByName" parameterType="String" resultType="user">
 	SELECT uid,username,age,sex,mobile,email,des,jointime FROM t_user where username=#{username}
 	</select>

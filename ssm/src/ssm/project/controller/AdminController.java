@@ -14,20 +14,15 @@ import ssm.project.service.AdminService;
 @Controller
 @RequestMapping("")
 public class AdminController {
-	
 	@Autowired
 	 AdminService adminService;
-	
 	@RequestMapping("admin_register")
 	@ResponseBody
 	public boolean register(Admin a){
-		
 		boolean data=adminService.register(a);
-		
 		System.out.println("注册成功："+data);
 		return data;
 	}
-	
 	@RequestMapping("adminlogin")
 	@ResponseBody
 	public boolean login(Admin admin,HttpSession session){
@@ -35,7 +30,7 @@ public class AdminController {
 		session.setAttribute("adminName", adminName);
 		System.out.println("登录名是："+admin.getName());
 		System.out.println("登录密码是："+admin.getPassword());
-		 return adminService.login(admin.getName(),admin.getPassword());
+		return adminService.login(admin.getName(),admin.getPassword());
 	}
 	@RequestMapping("toindex")
 	public String toindex(HttpSession session,Model model){
