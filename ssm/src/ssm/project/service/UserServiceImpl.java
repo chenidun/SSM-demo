@@ -41,9 +41,7 @@ public class UserServiceImpl implements UserService {
 			flag=true;
 		}
 		
-		System.out.println("É¾³ý½á¹ûÊÇ"+flag);
 		return flag;
-		
 	}
 	@Override
 	public boolean update(User u) {
